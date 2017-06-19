@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>test filedata</title>
+		<script src="js/jquery-2.0.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$().ready(function(){
+				alert(123);
+				$('#submit').click(function(){
+					
+					var data = new FormData($('#form')[0]);
+					$.ajax({
+						type:"POST",
+						url:"http://localhost:8080",
+						async:true,
+						data:data,
+						processData: false,  //  传递的数据编码  这两个一般配合使用
+                        contentType: false ,  // 编码类型 关闭 否则会出错
+						success:function(ret){
+							alert(ret);
+						}
+					});
+				//	alert(11);
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<form action="" method="post" id="form" >
+			<input type="file" name="getfile1" id="getfile1" value="" />
+			<input type="file" name="getfile2" id="getfile2" value="" />
+			<input type="text" name="test" id="test" value="" />
+		</form>
+		<input  id="submit" type="submit" value="set"/>
+	</body>
+</html>
